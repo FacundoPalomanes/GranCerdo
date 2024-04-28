@@ -1,43 +1,47 @@
-#include <iostream>
-#include "functions.h"
+#include <iostream> // cout y comandos generales
+#include <stdlib.h> // system pause, cls etc
+#include "functions.h" // functions program
+#include <cstdlib> // dado
+#include <time.h> // estos dos son para el dado
 
 using namespace std;
 
 void menu();
+bool cerrarJuego();
+void tirarDados(string * ,string *);
+
 
 int main() {
+    //Inicializo la semilla
+    srand(time(NULL));
 
-menu();
 int eleccion;
+bool cerrar = false;
+string jugador1 = "%",jugador2 = "%";
+
 
 while(1>0) {
+menu();
 cin >> eleccion;
 switch(eleccion) {
     case 1:
+        tirarDados(&jugador1,&jugador2);
+        system("pause");
         break;
     case 2:
         break;
     case 3:
         break;
     case 0:
-        char decision;
-        cout << "Estas seguro que quieres salir? Y/N ";
-        cin >> decision;
-        while(decision != 'Y' || decision != 'N') {
-        if(decision == 'Y'|| decision == 'y') {
-            return 0;
-        } if(decision == 'N' || decision == 'n') {
-        break;
-        }
-            cout << "Ingresar caracter valido ";
-            cin >> decision;
+        cerrar = cerrarJuego();
+        if(cerrar == true) {
+        return 0;
         }
         break;
     default:
         cout << "Letra o numero equivocado" << endl;
         break;
+    }
 }
-}
-
 return 0;
 }
