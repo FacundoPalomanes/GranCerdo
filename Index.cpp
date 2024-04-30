@@ -17,10 +17,10 @@ int main() {
 
 int eleccion;
 bool cerrar = false;
-string jugador1 = "%",jugador2 = "%";
+string jugador1,jugador2;
 
 
-while(1>0) {
+while(cerrar != true) {
 menu();
 cin >> eleccion;
 switch(eleccion) {
@@ -34,9 +34,6 @@ switch(eleccion) {
         break;
     case 0:
         cerrar = cerrarJuego();
-        if(cerrar == true) {
-        return 0;
-        }
         break;
     default:
         cout << "Letra o numero equivocado" << endl;

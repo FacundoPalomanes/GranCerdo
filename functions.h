@@ -19,12 +19,11 @@ cout << "0 - SALIR" << endl << endl;
 void tirarDados(string *jugador1, string *jugador2) {
 system("cls");
 
-if(*jugador1 == "%" && *jugador2 == "%") {
 cout << "Ingresar el nombre del jugador ";
 cin >> *jugador1;
 cout <<"Ingresar el nombre del jugador ";   //pedimos nombres solo si no hay nombres ya puestos
 cin >> *jugador2;
-}
+
 reglasDados(); // //explicamos las reglas del juego
 bool finish = false;
 
