@@ -3,7 +3,7 @@
 using namespace std;
 
 int numeroAleatorio(int *,int );
-void reglasDados();
+void reglasDados(string);
 bool validacionDados(string *,string *,int *,int *);
 
 void menu() {
@@ -24,29 +24,28 @@ cin >> *jugador1;
 cout <<"Ingresar el nombre del jugador ";   //pedimos nombres solo si no hay nombres ya puestos
 cin >> *jugador2;
 
-reglasDados(); // //explicamos las reglas del juego
+reglasDados("dados"); // //explicamos las reglas del juego
 bool finish = false;
 
 while(finish != true) {
-    int dadosJugador1[2] = {0,0},dadosJugador2[2] = {0, 0}; // inicializamos los datos
+    int const caras = 2;
+    int dadosJugador1[caras] = {0,0},dadosJugador2[caras] = {0, 0}; // inicializamos los datos
 
     cout << endl << *jugador1 << " ";
     system("pause");
-    numeroAleatorio(dadosJugador1,2); // usamos la function para poner numeros aleatorios en el array del jugador1
+    numeroAleatorio(dadosJugador1,caras); // usamos la function para poner numeros aleatorios en el array del jugador1
     cout << "Has tirado un " << dadosJugador1[0] << " y un " << dadosJugador1[1];
     cout << endl << *jugador2 << " ";
     system("pause");
-    numeroAleatorio(dadosJugador2,2); // usamos la function para poner numeros aleatorios en el array del jugador2
+    numeroAleatorio(dadosJugador2,caras); // usamos la function para poner numeros aleatorios en el array del jugador2
     cout << "Has tirado un " << dadosJugador2[0] << " y un " << dadosJugador2[1];
 
     finish = validacionDados(jugador1,jugador2,dadosJugador1,dadosJugador2);
-
 
     }
     cout << endl << "El jugador 1 es: " << *jugador1;
     cout << endl << "El jugador 2 es: " << *jugador2;
 }
-
 
 bool validacionDados(string *jugador1,string *jugador2,int dadosJugador1[],int dadosJugador2[]) {
     int suma1,suma2,mayorJugador1,mayorJugador2;
@@ -80,24 +79,19 @@ bool validacionDados(string *jugador1,string *jugador2,int dadosJugador1[],int d
             *jugador2 = cambiador;
             return true;
         } if(mayorJugador1>mayorJugador2) {
-            cout << "esto paso por aca";
             return true;
         }
     }
     return false;
 }
 
-
-
-
-
-
-void reglasDados() {
-cout << "Bueno, Antes de comenzar, se debe determinar qui‚n empieza. Para ello se lanzan dos dados y la persona que haya obtenido el mayor puntaje comienza" << endl;
-cout << "Si empatan en el puntaje, comienza qui‚n que haya obtenido el dado m s alto. Si empatan nuevamente vuelven a lanzar ambos dados otra vez hasta que se cumpla" << endl;
-cout << "la condici¢n de que alguien comience primero." << endl;
+void reglasDados(string especificacion) {
+    if(especificacion == "dados") {
+        cout << "Bueno, Antes de comenzar, se debe determinar qui‚n empieza. Para ello se lanzan dos dados y la persona que haya obtenido el mayor puntaje comienza" << endl;
+        cout << "Si empatan en el puntaje, comienza qui‚n que haya obtenido el dado m s alto. Si empatan nuevamente vuelven a lanzar ambos dados otra vez hasta que se cumpla" << endl;
+        cout << "la condici¢n de que alguien comience primero." << endl;
+    }
 }
-
 
 int numeroAleatorio(int dados[],int rango) {
 for(int i = 0; i<=rango-1; i++) {
