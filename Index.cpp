@@ -7,6 +7,7 @@
 using namespace std;
 
 void menu();
+void creditos();
 bool cerrarJuego();
 void tirarDados(string * ,string *);
 
@@ -15,30 +16,33 @@ int main() {
     //Inicializo la semilla
     srand(time(NULL));
 
-int eleccion;
-bool cerrar = false;
-string jugador1,jugador2;
+    int eleccion,mayorPDV = 0;
+    bool cerrar = false;
+    string jugador1,jugador2,mejorJugador;
 
 
-while(cerrar != true) {
-menu();
-cin >> eleccion;
-switch(eleccion) {
-    case 1:
-        tirarDados(&jugador1,&jugador2);
-        system("pause");
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
-    case 0:
-        cerrar = cerrarJuego();
-        break;
-    default:
-        cout << "Letra o numero equivocado" << endl;
-        break;
-    }
-}
+    while(cerrar != true) {
+        menu();
+        cin >> eleccion;
+        switch(eleccion) {
+            case 1:
+                tirarDados(&jugador1,&jugador2);
+                //Juego() 
+                system("pause");
+                break;
+            case 2:
+                // estadisticas(mejorJugador,mayorPDV); // this should be like this 
+                break; // estadisticas
+            case 3:
+                creditos();
+                break; // Cerditos  (Creditos)
+            case 0:
+                cerrar = cerrarJuego();
+                break;
+            default:
+                cout << "Letra o numero equivocado" << endl;
+                break;
+            }
+        }
 return 0;
 }
