@@ -10,37 +10,42 @@ void menu();
 void creditos();
 bool cerrarJuego();
 void tirarDados(string * ,string *);
+void juego(string *,string *,string *, int *);
+void estadisticas(string *, int *);
 
 
 int main() {
     //Inicializo la semilla
     srand(time(NULL));
 
-    int eleccion,mayorPDV = 0;
+    int mayorPDV = -1;
     bool cerrar = false;
     string jugador1,jugador2,mejorJugador;
+    char eleccion;
 
 
     while(cerrar != true) {
         menu();
         cin >> eleccion;
         switch(eleccion) {
-            case 1:
+            case '1':
                 tirarDados(&jugador1,&jugador2);
-                //Juego() 
+                juego(&jugador1,&jugador2,&mejorJugador,&mayorPDV);
                 system("pause");
                 break;
-            case 2:
-                // estadisticas(mejorJugador,mayorPDV); // this should be like this 
+            case '2':
+                estadisticas(&mejorJugador,&mayorPDV); // this should be like this
                 break; // estadisticas
-            case 3:
+            case '3':
                 creditos();
                 break; // Cerditos  (Creditos)
-            case 0:
+            case '0':
                 cerrar = cerrarJuego();
                 break;
             default:
                 cout << "Letra o numero equivocado" << endl;
+                system("pause");
+                system("cls");
                 break;
             }
         }
