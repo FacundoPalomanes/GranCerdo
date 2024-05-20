@@ -10,7 +10,7 @@ void menu();
 void creditos();
 bool cerrarJuego();
 void tirarDados(string * ,string *);
-void juego(string *,string *,string *, int *);
+void juego(string ,string ,string *, int *);
 void estadisticas(string *, int *);
 
 
@@ -30,7 +30,7 @@ int main() {
         switch(eleccion) {
             case '1':
                 tirarDados(&jugador1,&jugador2);
-                juego(&jugador1,&jugador2,&mejorJugador,&mayorPDV);
+                juego(jugador1,jugador2,&mejorJugador,&mayorPDV);
                 system("pause");
                 break;
             case '2':
