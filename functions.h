@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <string.h>
 
 using namespace std;
 
@@ -13,14 +15,14 @@ void mostrarDados(int *,int);
 
 void tirarDados(string *jugador1, string *jugador2) {
     system("cls");
-
+    cin.ignore();
     cout << "Ingresar el nombre del jugador ";
-    cin >> *jugador1;
+    std::getline(std::cin, *jugador1);
     cout <<"Ingresar el nombre del jugador ";   //pedimos nombres solo si no hay nombres ya puestos
-    cin >> *jugador2;
+    std::getline(std::cin, *jugador2);
     while(*jugador1 == *jugador2) {
         cout <<"Ingresaste el mismo nombre en ambos jugadores, por favor pon el segundo jugador distinto nombre ";
-        cin >> *jugador2;       //debug evitamos q se puedan enviar dos veces el mismo nombre y problemas distintos con el juego
+        std::getline(std::cin, *jugador2); //debug evitamos q se puedan enviar dos veces el mismo nombre y problemas distintos con el juego
     }
 
     system("cls");
@@ -93,7 +95,7 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
     int cantidadDados = 2;
     int dadosJugador1[cantidadDados] = {0,0}, dadosJugador2[cantidadDados] = {0,0};
 
-    
+
     bool hundirse = false, cedeTurno = false,lanzarDevuelta = false;
 
     int lanzamientos = 0;
@@ -105,8 +107,8 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
         eleccion = 's';
         turno = jugador1;
 
-            
-        menuJuego(jugador1,jugador2,trufasJugador1,trufasJugador2,turno,i,trufasRonda,lanzamientos); 
+
+        menuJuego(jugador1,jugador2,trufasJugador1,trufasJugador2,turno,i,trufasRonda,lanzamientos);
 
        while(eleccion == 's' || eleccion == 'S') {
         lanzamientos += 1;
@@ -118,19 +120,20 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
             cantidadDados = 3;
             cout << endl <<"De ahora en adelante, el juego pasa a ser con tres dados" << endl;
             }
-        }   
+        }
 
             numeroAleatorio(dadosJugador1,cantidadDados);
 
             menuJuego(jugador1,jugador2,trufasJugador1,trufasJugador2,turno,i,trufasRonda,lanzamientos); // muestra todo el menu del juego
-            
-            
+
+
             mostrarDados(dadosJugador1,cantidadDados); // esta function muestra los dados ya sean 2 o tres
 
             validacionTirada(dadosJugador1,cantidadDados,&trufasJugador1,&trufasRonda,&cedeTurno,&hundirse,&lanzarDevuelta,&trufasJugador2); // aca esta el cout de lo q sucedio y si puede continuar o no
 
         if(cedeTurno == false&&lanzarDevuelta == false) {
-            cin >> eleccion;  //esto es por si se hunde que no tenga chance de elejir 
+            cout << "Continuar? (S/N) ";
+            cin >> eleccion;  //esto es por si se hunde que no tenga chance de elejir
         }
         if(cedeTurno == true) {
             eleccion = 'n';
@@ -140,7 +143,7 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
             lanzarDevuelta = false;
             oinksJugador1 += 1;
         }
-         
+
 
          if (eleccion != 's' && eleccion != 'n') { // this function is for the user dont put any label strange
             while(eleccion == 's' || eleccion == 'n') {
@@ -158,8 +161,8 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
         eleccion = 's';
         turno = jugador2;
 
-            
-        menuJuego(jugador1,jugador2,trufasJugador1,trufasJugador2,turno,i,trufasRonda,lanzamientos); 
+
+        menuJuego(jugador1,jugador2,trufasJugador1,trufasJugador2,turno,i,trufasRonda,lanzamientos);
 
        while(eleccion == 's' || eleccion == 'S') {
         lanzamientos += 1;
@@ -171,19 +174,19 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
             cantidadDados = 3;
             cout << endl <<"De ahora en adelante, el juego pasa a ser con tres dados" << endl;
             }
-        }   
+        }
 
             numeroAleatorio(dadosJugador2,cantidadDados);
 
             menuJuego(jugador1,jugador2,trufasJugador1,trufasJugador2,turno,i,trufasRonda,lanzamientos); // muestra todo el menu del juego
-            
-            
+
+
             mostrarDados(dadosJugador2,cantidadDados); // esta function muestra los dados ya sean 2 o tres
 
             validacionTirada(dadosJugador2,cantidadDados,&trufasJugador2,&trufasRonda,&cedeTurno,&hundirse,&lanzarDevuelta,&trufasJugador1); // aca esta el cout de lo q sucedio y si puede continuar o no
-
         if(cedeTurno == false&&lanzarDevuelta == false) {
-            cin >> eleccion;  //esto es por si se hunde que no tenga chance de elejir 
+            cout << "Continuar? (S/N) ";
+            cin >> eleccion;  //esto es por si se hunde que no tenga chance de elejir
         }
         if(cedeTurno == true) {
             eleccion = 'n';
@@ -193,7 +196,7 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
             lanzarDevuelta = false;
             oinksJugador2 += 1;
         }
-         
+
 
          if (eleccion != 's' && eleccion != 'n') { // this function is for the user dont put any label strange
             while(eleccion == 's' || eleccion == 'n') {
@@ -225,8 +228,8 @@ void juego(string jugador1,string jugador2,string *mejorJugador,int *mayorPDV) {
         }
     }
     //aca se tendria q mostrar el final quien gano
-        
-    
+
+
 }
 
 void numeroAleatorio(int dados[],int rango) {
@@ -266,19 +269,21 @@ void validacionTirada(int dadosJugador[],int cantidadDados, int *trufasJugador,i
             system("pause");
             *trufasRonda = 0;
             *cedeTurno = true;
-        } 
+        }
         if((dadosJugador[0] == dadosJugador[1])&&((dadosJugador[0] != 1)||(dadosJugador[1] != 1))) { // si hace un oink osea son el mismo numero
+            cout << "¡Sumaste " << dadosJugador[0]*2*2 << " trufas!" << endl;
             cout << "El cerdo hizo un Oink y acumula trufas por el doble de la suma de las caras al total de la ronda" << endl;
             cout << "Como hiciste un oink estas obligado a tirar devuelta" << endl;
             system("pause");
             *trufasRonda += dadosJugador[0]*2*2;
             *lanzarDevuelta = true;
         } if((dadosJugador[0]!=dadosJugador[1])&&((dadosJugador[0] != 1)&&(dadosJugador[1] != 1))) {
+            cout << "¡Sumaste " << dadosJugador[0]+dadosJugador[1] << " trufas!" << endl;
             cout << "El cerdo acumula trufas " << endl;
             *trufasRonda += (dadosJugador[0] + dadosJugador[1]);
         }
 
-    } 
+    }
     if(cantidadDados == 3) {
         if(dadosJugador[0] == 1 &&dadosJugador[1] == 1 && dadosJugador[2] == 1) {
             cout << endl << "Pierdes todas las trufas acumuladas y las de la ronda y los puntos se acumulan al otro jugador" << endl;
@@ -301,6 +306,7 @@ void validacionTirada(int dadosJugador[],int cantidadDados, int *trufasJugador,i
             *cedeTurno = true;
         }
         if(((dadosJugador[0] == dadosJugador[1])&&(dadosJugador[1] == dadosJugador[2]))&&(dadosJugador[0] != 1)) { // comparo 0 con 1 y 1 con 2 y q el 0 sea distinto a numero 1
+            cout << "¡Sumaste " << dadosJugador[0]*3*2 << " trufas!" << endl;
             cout << "El cerdo hizo un Oink y acumula trufas por el doble de la suma de las caras al total de la ronda" << endl;
             cout << "Como hiciste un oink estas obligado a tirar devuelta" << endl;
             system("pause");
@@ -308,6 +314,7 @@ void validacionTirada(int dadosJugador[],int cantidadDados, int *trufasJugador,i
             *lanzarDevuelta = true;
         }
         if(((dadosJugador[0] != 1)&&(dadosJugador[1] != 1)&&(dadosJugador[2] != 1))&&((dadosJugador[0]!=dadosJugador[1])&&(dadosJugador[1]!=dadosJugador[2])&&(dadosJugador[2]!=dadosJugador[0]))) { //suma normal de puntos
+            cout << "¡Sumaste " << dadosJugador[0]+dadosJugador[1] << " trufas!" << endl;
             cout << "El cerdo acumula trufas " << endl;
             *trufasRonda += (dadosJugador[0] + dadosJugador[1] + dadosJugador[2]);
         }
@@ -365,9 +372,9 @@ if(mayLanzamientoJugador1>mayLanzamientoJugador2) {
     cout << "------------------------------------------------------------------------" << endl;
     cout << "TOTAL                  "<< *pdvJug1 <<" PDV                    "<< *pdvJug2 <<" PDV" << endl;
     if(*pdvJug1>*pdvJug2) {
-        cout <<" GANADOR: "<<jugador1<<" con "<<*pdvJug1<<" puntos de victoria." << endl;      
+        cout <<" GANADOR: "<<jugador1<<" con "<<*pdvJug1<<" puntos de victoria." << endl;
     }if(*pdvJug2>*pdvJug1) {
-        cout <<" GANADOR: "<<jugador2<<" con "<<*pdvJug2<<" puntos de victoria." << endl;      
+        cout <<" GANADOR: "<<jugador2<<" con "<<*pdvJug2<<" puntos de victoria." << endl;
     } if(*pdvJug1==*pdvJug2) {
         cout <<" EMPATE ENTRE: "<<jugador1<<" y "<<jugador2 << endl;
     }
@@ -377,8 +384,6 @@ while(oink != "Oink") {
 cin >> oink;
 }
 system("cls");
-
-
 
 }
 
@@ -455,8 +460,8 @@ void reglas(string especificacion) {
 
 void creditos() {
     system("cls");
-    cout << endl << "(Nombre del equipo)";
-    cout << endl << "Martin Alberto Cardone: Legajo ????";
+    cout << endl << "Equipo numero 8";
+    cout << endl << "Martin Alberto Cardone: Legajo 24942";
     cout << endl << "Facundo Palomanes: Legajo 28799";
     cout << endl << "Simon Theo Barrau: Legajo ????";           // hace falta el resto de Legajos
     cout << endl << "Caterina Fuster: Legajo ????";

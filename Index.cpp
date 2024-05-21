@@ -31,7 +31,6 @@ int main() {
             case '1':
                 tirarDados(&jugador1,&jugador2);
                 juego(jugador1,jugador2,&mejorJugador,&mayorPDV);
-                system("pause");
                 break;
             case '2':
                 estadisticas(&mejorJugador,&mayorPDV); // this should be like this
